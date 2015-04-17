@@ -70,31 +70,9 @@ app.controller("carController", function($scope){
     }
 });
 
-app.controller("newController", function($scope){
-
-    $scope.savePerson = function(){
-        if($scope.formPerson.id == null) {
-            $scope.persons.push({id:  $scope.persons.length+1,name: $scope.formPerson.name, age: $scope.formPerson.age});
-            $scope.formPerson = "";
-            $scope.formPerson = "";
-        }
-        else
-        {
-            for(i in $scope.persons) {
-                if($scope.persons[i].id == $scope.formPerson.id) {
-                    $scope.persons[i] = $scope.formPerson;
-                }
-            }
-            $scope.formPerson = "";
-            $scope.formPerson = "";
-        }
-    }
-
-
-});
 
 app.controller("newController", function($scope){
-
+    $scope.persons =  persons
     $scope.savePerson = function(){
         if($scope.formPerson.id == null) {
             $scope.persons.push({id:  $scope.persons.length+1,name: $scope.formPerson.name, age: $scope.formPerson.age});
@@ -117,7 +95,7 @@ app.controller("newController", function($scope){
 });
 
 app.controller('personDetails', ['$scope', '$routeParams', function ($scope, $routeParams) {
-
+    $scope.persons =  persons
     if($routeParams.id){
         $scope.selected = $scope.persons.filter(function(person){
             return person.id == $routeParams.id;
