@@ -1,0 +1,30 @@
+<div class="container" ng-controller="UserController">
+    <h2>Total persons:{{totalPersons()}}</h2>
+    <input type="search" ng-model="userfilter" placeholder="Filter users">
+    <table class="table table-striped table-bordered" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Street</th>
+            <th>Email</th>
+            <th>Dob</th>
+            <th>Phone</th>
+            <th>Cell</th>
+            <th>Picture</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="person in users | filter: userfilter ">
+            <td> {{ person.title }} {{ person.first }}  {{ person.last }}</td>
+            <td> {{ person.street }}, {{ person.city }},  {{ person.state }}</td>
+            <td> {{ person.email }}</td>
+            <td> {{ person.dob }}</td>
+            <td> {{ person.phone }}</td>
+            <td> {{ person.cell }}</td>
+            <td><img src="{{ person.picture.thumbnail }}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div>

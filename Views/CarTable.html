@@ -1,0 +1,90 @@
+<div class="container" ng-controller="personController">
+
+
+    <h1>{{title}}</h1>
+
+    <h2>Number of cars: {{cars.length}}</h2>
+    <input type="search" ng-model="carfilter" placeholder="Filter cars">
+
+    <div row>
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td><a href="" ng-click="predicate = 'year'; reverse=!reverse">Year</a></td>
+                    <td><a href="" ng-click="predicate = 'registered'; reverse=!reverse">Registered</a></td>
+                    <td><a href="" ng-click="predicate = 'make'; reverse=!reverse">Make</a></td>
+                    <td><a href="" ng-click="predicate = 'model'; reverse=!reverse">Model</a></td>
+                    <td><a href="" ng-click="predicate = 'description'; reverse=!reverse">Description</a></td>
+                    <td><a href="" ng-click="predicate = 'price'; reverse=!reverse">Price</a></td>
+                    <td><a>Action</a></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="car in cars | filter: carfilter | orderBy:predicate:reverse">
+                    <td>{{car.id}}</td>
+                    <td>{{car.year }}</td>
+                    <td>{{car.registered | date }}</td>
+                    <td>{{car.make}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.description}}</td>
+                    <td>{{car.price | currency}}</td>
+                    <td>
+                        <a  href="#" ng-click="editCar(car.id)">edit</a> |
+                        <a href="#" ng-click="deleteCar(car.id)">delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-3"  style="border: thin lightblue solid; border-radius: 5px;padding: 1em;">
+            <form class="form-horizontal">
+                <fieldset >
+                    <legend>New Car</legend>
+                    <div class="form-group">
+
+                        <div class="col-xs-9">
+                            <input type="number" ng-model="newcar.year" class="form-control" id="year" placeholder="Year">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-9">
+                            <input type="date" ng-model="newcar.registered" date-format="MM/dd/yyyy" date-type="string"  class="form-control" id="registered" placeholder="Registered">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-9">
+                            <input type="text" ng-model="newcar.make" class="form-control" id="make" placeholder="Make">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-9">
+                            <input type="text" ng-model="newcar.model" class="form-control" id="model" placeholder="Model">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-9">
+                            <input type="text" ng-model="newcar.description" class="form-control" id="description" placeholder="Description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-9">
+                            <input type="text" ng-model="newcar.price" class="form-control" id="price" placeholder="Price">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <div class="form-group">
+                <button type="submit" ng-click="saveCar()"  class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
